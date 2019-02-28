@@ -24,3 +24,25 @@ public class Maze{
     }
     animate = false;
   }
+  public int solve(){
+    int sx;
+    int sy;
+    for (int i = 0; maze.length; i++){
+      for (int x = 0; maze[i].length; x++){
+        if (maze[i][x] == 'S'){
+          sx = i;
+          sy = x;
+        }
+      }
+    }
+    return solve(sx, sy);
+  }
+  private int solve(int row, int col){
+    if(animate){
+      clearTerminal();
+      System.out.println(this);
+      wait(20);
+    }
+
+  }
+}
