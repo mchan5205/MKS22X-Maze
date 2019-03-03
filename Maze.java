@@ -14,10 +14,9 @@ public class Maze{
     }
     Scanner c = new Scanner(f);
     maze = new char[line.length()][i];
-    i = 0;    
+    i = 0;
     while(c.hasNextLine()){
       line = c.nextLine();
-      System.out.println(line);
       for (int x = 0; x < line.length(); x++){
         maze[x][i] = line.charAt(x);
       }
@@ -51,10 +50,13 @@ public class Maze{
   }
   private int solve(int row, int col){
     int fin = 0;
+    if (row < 0 || row > maze.length - 1 || col < 0 || col > maze[0].length - 1){
+      return -1;
+    }
     if(animate){
       clearTerminal();
       System.out.println(this);
-      wait(20);
+      wait(1000);
     }
     if (maze[row][col] == 'E'){
       for (int r = 0; r < maze.length; r++){
@@ -67,25 +69,25 @@ public class Maze{
       return fin;
     }
     maze[row][col] = '@';
-    if (maze[row + 1][col] != 'x' || maze[row + 1][col] != '@' || maze[row + 1][col] != '.'){
+    if (maze[row + 1][col] != '#' && maze[row + 1][col] != '@' && maze[row + 1][col] != '.'){
       fin = solve(row + 1, col);
       if (fin != -1){
         return fin;
       }
     }
-    if (maze[row - 1][col] != 'x' || maze[row - 1][col] != '@' || maze[row - 1][col] != '.'){
+    if (maze[row - 1][col] != '#' && maze[row - 1][col] != '@' && maze[row - 1][col] != '.'){
       fin = solve(row - 1, col);
       if (fin != -1){
         return fin;
       }
     }
-    if (maze[row][col + 1] != 'x' || maze[row][col + 1] != '@' || maze[row][col + 1] != '.'){
+    if (maze[row][col + 1] != '#' && maze[row][col + 1] != '@' && maze[row][col + 1] != '.'){
       fin = solve(row, col + 1);
       if (fin != -1){
         return fin;
       }
     }
-    if (maze[row][col - 1] != 'x' || maze[row][col - 1] != '@' || maze[row][col - 1] != '.'){
+    if (maze[row][col - 1] != '#' && maze[row][col - 1] != '@' && maze[row][col - 1] != '.'){
       fin = solve(row, col - 1);
       if (fin != -1){
         return fin;
