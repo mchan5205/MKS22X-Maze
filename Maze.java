@@ -50,13 +50,10 @@ public class Maze{
   }
   private int solve(int row, int col){
     int fin = 0;
-    if (row < 0 || row > maze.length - 1 || col < 0 || col > maze[0].length - 1){
-      return -1;
-    }
     if(animate){
       clearTerminal();
       System.out.println(this);
-      wait(1000);
+      wait(50);
     }
     if (maze[row][col] == 'E'){
       for (int r = 0; r < maze.length; r++){
